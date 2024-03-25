@@ -91,80 +91,17 @@ wire temp6[7:0];
 wire temp7[7:0];
 wire temp8[7:0];
 
-and and1(A[0], B[0], temp1[0]); 
-and and2(A[1], B[0], temp1[1]);
-and and3(A[2], B[0], temp1[2]);
-and and4(A[3], B[0], temp1[3]);
-and and5(A[4], B[0], temp1[4]);
-and and6(A[5], B[0], temp1[5]);
-and and7(A[6], B[0], temp1[6]);
-and and8(A[7], B[0], temp1[7]);
-
-and and1(A[0], B[1], temp2[0]); 
-and and2(A[1], B[1], temp2[1]);
-and and3(A[2], B[1], temp2[2]);
-and and4(A[3], B[1], temp2[3]);
-and and5(A[4], B[1], temp2[4]);
-and and6(A[5], B[1], temp2[5]);
-and and7(A[6], B[1], temp2[6]);
-and and8(A[7], B[1], temp2[7]);
-
-and and1(A[0], B[2], temp3[0]); 
-and and2(A[1], B[2], temp3[1]);
-and and3(A[2], B[2], temp3[2]);
-and and4(A[3], B[2], temp3[3]);
-and and5(A[4], B[2], temp3[4]);
-and and6(A[5], B[2], temp3[5]);
-and and7(A[6], B[2], temp3[6]);
-and and8(A[7], B[2], temp3[7]);
-
-and and1(A[0], B[3], temp4[0]); 
-and and2(A[1], B[3], temp4[1]);
-and and3(A[2], B[3], temp4[2]);
-and and4(A[3], B[3], temp4[3]);
-and and5(A[4], B[3], temp4[4]);
-and and6(A[5], B[3], temp4[5]);
-and and7(A[6], B[3], temp4[6]);
-and and8(A[7], B[3], temp4[7]);
-
-and and1(A[0], B[4], temp5[0]); 
-and and2(A[1], B[4], temp5[1]);
-and and3(A[2], B[4], temp5[2]);
-and and4(A[3], B[4], temp5[3]);
-and and5(A[4], B[4], temp5[4]);
-and and6(A[5], B[4], temp5[5]);
-and and7(A[6], B[4], temp5[6]);
-and and8(A[7], B[4], temp5[7]);
-
-and and1(A[0], B[5], temp6[0]); 
-and and2(A[1], B[5], temp6[1]);
-and and3(A[2], B[5], temp6[2]);
-and and4(A[3], B[5], temp6[3]);
-and and5(A[4], B[5], temp6[4]);
-and and6(A[5], B[5], temp6[5]);
-and and7(A[6], B[5], temp6[6]);
-and and8(A[7], B[5], temp6[7]);
-
-and and1(A[0], B[6], temp7[0]); 
-and and2(A[1], B[6], temp7[1]);
-and and3(A[2], B[6], temp7[2]);
-and and4(A[3], B[6], temp7[3]);
-and and5(A[4], B[6], temp7[4]);
-and and6(A[5], B[6], temp7[5]);
-and and7(A[6], B[6], temp7[6]);
-and and8(A[7], B[6], temp7[7]);
-
-and and1(A[0], B[7], temp8[0]); 
-and and2(A[1], B[7], temp8[1]);
-and and3(A[2], B[7], temp8[2]);
-and and4(A[3], B[7], temp8[3]);
-and and5(A[4], B[7], temp8[4]);
-and and6(A[5], B[7], temp8[5]);
-and and7(A[6], B[7], temp8[6]);
-and and8(A[7], B[7], temp8[7]);
-
+mult8x1 mult1(A, B[0], temp1);
+mult8x1 mult2(A, B[1], temp2);
+mult8x1 mult3(A, B[2], temp3);
+mult8x1 mult4(A, B[3], temp4);
+mult8x1 mult5(A, B[4], temp5);
+mult8x1 mult6(A, B[5], temp6);
+mult8x1 mult7(A, B[6], temp7);
+mult8x1 mult8(A, B[7], temp8);
 
 wire cout[51:0];
+
 wire P1_temp;
 wire P2_temp[1:0];
 wire P3_temp[2:0];
@@ -268,6 +205,29 @@ xor xor2(S, Cin, Cout);
 and and1(A, B, temp1);
 and and2(S, Cin, temp2);
 or or1(temp1, temp2, Cout);
+
+endmodule
+
+```
+
+```v
+
+module mult8x1(
+    input [7:0] A,
+    input B,
+    output [7:0] P
+);
+
+reg temp1[7:0];
+
+and and1(A[0], B, temp1[0]); 
+and and2(A[1], B, temp1[1]);
+and and3(A[2], B, temp1[2]);
+and and4(A[3], B, temp1[3]);
+and and5(A[4], B, temp1[4]);
+and and6(A[5], B, temp1[5]);
+and and7(A[6], B, temp1[6]);
+and and8(A[7], B, temp1[7]);
 
 endmodule
 
