@@ -92,53 +92,102 @@ module Mult2x2(
 
 endmodule
 
-module BitMultiplier8(
-    input [3:0]a, b,
-    output [7:0]p
-);
-    wire [39:0] w;
+module BitMultiplier8(a,b,p);
+input [7:0] a,b;
+output [15:0] p;
+wire [128:0] w;
 
-    and a1(w[0], a[0], b);
-    and a2(w[1], a[1], b);
-    and a3(w[2], a[2], b);
-    and a4(w[3], a[3], b);
 
-    and a5(w[4], a[0], b[1]);
-    and a6(w[5], a[1], b[1]);
-    and a7(w[6], a[2], b[1]);
-    and a8(w[7], a[3], b[1]);
+and a1(w[0], a[0], b[0]);
+and a2(w[1], a[1], b[0]);
+and a3(w[2], a[2], b[0]);
+and a4(w[3], a[3], b[0]);
+and a5(w[4], a[4], b[0]);
+and a6(w[5], a[5], b[0]);
+and a7(w[6], a[6], b[0]);
+and a8(w[7], a[7], b[0]);
 
-    and a9(w[8], a[0], b[2]);
-    and a10(w[9], a[1], b[2]);
-    and a11(w[10], a[2], b[2]);
-    and a12(w[11], a[3], b[2]);
+and a9(w[8], a[0], b[1]);
+and a10(w[9], a[1], b[1]);
+and a11(w[10], a[2], b[1]);
+and a12(w[11], a[3], b[1]);
+and a13(w[12], a[4], b[1]);
+and a14(w[13], a[5], b[1]);
+and a15(w[14], a[6], b[1]);
+and a16(w[15], a[7], b[1]);
 
-    and a13(w[12], a[0], b[3]);
-    and a14(w[13], a[1], b[3]);
-    and a15(w[14], a[2], b[3]);
-    and a16(w[15], a[3], b[3]);
+and a17(w[16], a[0], b[2]);
+and a18(w[17], a[1], b[2]);
+and a19(w[18], a[2], b[2]);
+and a20(w[19], a[3], b[2]);
+and a21(w[20], a[4], b[2]);
+and a22(w[21], a[5], b[2]);
+and a23(w[22], a[6], b[2]);
+and a24(w[23], a[7], b[2]);
 
-    assign p[0] = w[0];
-    halfadder a17(w[4], w[1], w[16], w[17]);
-    fulladder a18(w[5], w[2], w[17], w[18], w[19]);
-    fulladder a19(w[3], w[6], w[19], w[20], w[21]);
-    halfadder a20(w[7], w[21], w[22], w[23]);
-    halfadder a21(w[8], w[18], w[24], w[25]);
-    fulladder a22(w[25], w[9], w[20], w[26], w[27]);
-    fulladder a23(w[10], w[24], w[27], w[28], w[29]);
-        fulladder a24(w[11], w[23], w[29], w[30], w[31]);
-    halfadder a25(w[12], w[26], w[32], w[33]);
-    fulladder a26(w[13], w[28], w[33], w[34], w[35]);
-    fulladder a27(w[14], w[30], w[35], w[36], w[37]);
-    fulladder a28(w[37], w[15], w[31], w[38], w[39]);
+and a25(w[24], a[0], b[3]);
+and a26(w[25], a[1], b[3]);
+and a27(w[26], a[2], b[3]);
+and a28(w[27], a[3], b[3]);
+and a29(w[28], a[4], b[3]);
+and a30(w[29], a[5], b[3]);
+and a31(w[30], a[6], b[3]);
+and a32(w[31], a[7], b[3]);
 
-    assign p[1] = w[16];
-    assign p[2] = w[25];
-    assign p[3] = w[32];
-    assign p[4] = w[34];
-    assign p[5] = w[36];
-    assign p[6] = w[38];
-    assign p[7] = w[39];
+and a33(w[32], a[0], b[4]);
+and a34(w[33], a[1], b[4]);
+and a35(w[34], a[2], b[4]);
+and a36(w[35], a[3], b[4]);
+and a37(w[36], a[4], b[4]);
+and a38(w[37], a[5], b[4]);
+and a39(w[38], a[6], b[4]);
+and a40(w[39], a[7], b[4]);
+
+and a41(w[40], a[0], b[5]);
+and a42(w[41], a[1], b[5]);
+and a43(w[42], a[2], b[5]);
+and a44(w[43], a[3], b[5]);
+and a45(w[44], a[4], b[5]);
+and a46(w[45], a[5], b[5]);
+and a47(w[46], a[6], b[5]);
+and a48(w[47], a[7], b[5]);
+
+and a49(w[48], a[0], b[6]);
+and a50(w[49], a[1], b[6]);
+and a51(w[50], a[2], b[6]);
+and a52(w[51], a[3], b[6]);
+and a53(w[52], a[4], b[6]);
+and a54(w[53], a[5], b[6]);
+and a55(w[54], a[6], b[6]);
+and a56(w[55], a[7], b[6]);
+
+and a57(w[56], a[0], b[7]);
+and a58(w[57], a[1], b[7]);
+and a59(w[58], a[2], b[7]);
+and a60(w[59], a[3], b[7]);
+and a61(w[60], a[4], b[7]);
+and a62(w[61], a[5], b[7]);
+and a63(w[62], a[6], b[7]);
+and a64(w[63], a[7], b[7]);
+
+fulladder fa0(w[0], w[8], 1'b0, p[0], w[64]);
+fulladder fa1(w[1], w[9], w[64], p[1], w[65]);
+fulladder fa2(w[2], w[10], w[65], p[2], w[66]);
+fulladder fa3(w[3], w[11], w[66], p[3], w[67]);
+fulladder fa4(w[4], w[12], w[67], p[4], w[68]);
+fulladder fa5(w[5], w[13], w[68], p[5], w[69]);
+fulladder fa6(w[6], w[14], w[69], p[6], w[70]);
+fulladder fa7(w[7], w[15], w[70], p[7], w[71]);
+
+
+assign p[8] = w[72];
+assign p[9] = w[80];
+assign p[10] = w[88];
+assign p[11] = w[96];
+assign p[12] = w[104];
+assign p[13] = w[112];
+assign p[14] = w[120];
+assign p[15] = w[128];
 
 endmodule
 
@@ -184,14 +233,14 @@ module RippleCarryAdder(
     fulladder fa6(a[6], b[6], carry[5], sum[6], carry[6]);
     fulladder fa7(a[7], b[7], carry[6], sum[7], carry[7]);
 
-    fulladder fa00(0, 0, carry[7], sum[8], carry[8]);
-    fulladder fa01(0, 0, 0, sum[9], carry[9]);
-    fulladder fa02(0, 0, 0, sum[10], carry[10]);
-    fulladder fa03(0, 0, 0, sum[11], carry[11]);
-    fulladder fa04(0, 0, 0, sum[12], carry[12]);
-    fulladder fa05(0, 0, 0, sum[13], carry[13]);
-    fulladder fa06(0, 0, 0, sum[14], carry[14]);
-    fulladder fa07(0, 0, 0, sum[15], carry[15]);
+    fulladder fa00(1'b0, 1'b0, carry[7], sum[8], carry[8]);
+    fulladder fa01(1'b0, 1'b0, 1'b0, sum[9], carry[9]);
+    fulladder fa02(1'b0, 1'b0, 1'b0, sum[10], carry[10]);
+    fulladder fa03(1'b0, 1'b0, 1'b0, sum[11], carry[11]);
+    fulladder fa04(1'b0, 1'b0, 1'b0, sum[12], carry[12]);
+    fulladder fa05(1'b0, 1'b0, 1'b0, sum[13], carry[13]);
+    fulladder fa06(1'b0, 1'b0, 1'b0, sum[14], carry[14]);
+    fulladder fa07(1'b0, 1'b0, 1'b0, sum[15], carry[15]);
 
 endmodule
 
